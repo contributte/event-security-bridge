@@ -18,8 +18,8 @@ Simple bridge between [`Nette\Application`](https://github.com/nette/application
 
 ## Install
 
-```
-$ composer require contributte/event-security-bridge
+```bash
+composer require contributte/event-security-bridge
 ```
 
 ## Versions
