@@ -8,10 +8,10 @@
 
 ## Usage :tada:
 
-```yaml
+```neon
 extensions:
-    events: Contributte\EventDispatcher\DI\EventDispatcherExtension
-    events2security: Contributte\Events\Bridges\Security\DI\EventSecurityBridgeExtension
+	events: Contributte\EventDispatcher\DI\EventDispatcherExtension
+	events2security: Contributte\Events\Bridges\Security\DI\EventSecurityBridgeExtension
 ```
 
 ## Bridge :wrench:
