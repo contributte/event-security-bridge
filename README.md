@@ -1,26 +1,25 @@
-# Event Dispatcher > Security Event Bridge :recycle:
+![](https://heatbadger.now.sh/github/readme/contributte/event-security-bridge/?deprecated=1)
 
-Simple bridge between [`Nette\Application`](https://github.com/nette/application/) and [`Contributte\EventDispatcher`](https://github.com/contributte/event-dispatcher).
+<p align=center>
+    <a href="https://bit.ly/ctteg"><img src="https://badgen.net/badge/support/gitter/cyan"></a>
+    <a href="https://bit.ly/cttfo"><img src="https://badgen.net/badge/support/forum/yellow"></a>
+    <a href="https://contributte.org/partners.html"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
+</p>
 
------
+<p align=center>
+    Website 🚀 <a href="https://contributte.org">contributte.org</a> | Contact 👨🏻‍💻 <a href="https://f3l1x.io">f3l1x.io</a> | Twitter 🐦 <a href="https://twitter.com/contributte">@contributte</a>
+</p>
 
-[![Build Status](https://img.shields.io/travis/contributte/event-security-bridge.svg?style=flat-square)](https://travis-ci.org/contributte/event-security-bridge)
-[![Code coverage](https://img.shields.io/coveralls/contributte/event-security-bridge.svg?style=flat-square)](https://coveralls.io/r/contributte/event-security-bridge)
-[![Licence](https://img.shields.io/packagist/l/contributte/event-security-bridge.svg?style=flat-square)](https://packagist.org/packages/contributte/event-security-bridge)
+## Disclaimer
 
-[![Downloads this Month](https://img.shields.io/packagist/dm/contributte/event-security-bridge.svg?style=flat-square)](https://packagist.org/packages/contributte/event-security-bridge)
-[![Downloads total](https://img.shields.io/packagist/dt/contributte/event-security-bridge.svg?style=flat-square)](https://packagist.org/packages/contributte/event-security-bridge)
-[![Latest stable](https://img.shields.io/packagist/v/contributte/event-security-bridge.svg?style=flat-square)](https://packagist.org/packages/contributte/event-security-bridge)
+| :warning: | This project is no longer being maintained. Please use [contributte/event-dispatcher-extra](https://github.com/contributte/event-dispatcher-extra).
+|---|---|
 
-## Discussion / Help
-
-[![Join the chat](https://img.shields.io/gitter/room/contributte/contributte.svg?style=flat-square)](http://bit.ly/ctteg)
-
-## Install
-
-```bash
-composer require contributte/event-security-bridge
-```
+| Composer | [`contributte/event-dispatcher-extra`](https://packagist.org/packages/contributte/event-dispatcher-extra) |
+|---| --- |
+| Version | ![](https://badgen.net/packagist/v/contributte/event-dispatcher-extra) |
+| PHP | ![](https://badgen.net/packagist/php/contributte/event-dispatcher-extra) |
+| License | ![](https://badgen.net/github/license/contributte/event-dispatcher-extra) |
 
 ## Versions
 
@@ -28,28 +27,65 @@ composer require contributte/event-security-bridge
 |-------------|---------|----------|----------|
 | stable      | `^0.1`  | `master` | `>= 5.6` |
 
-## Overview
+## Usage :tada:
 
-- [Usage - how to register](https://github.com/contributte/event-security-bridge/blob/master/.docs/README.md#usage-tada)
-- [Bridge - nette application](https://github.com/contributte/event-security-bridge/blob/master/.docs/README.md#bridge-wrench)
-- [Command - example command](https://github.com/contributte/event-security-bridge/blob/master/.docs/README.md#subscriber-bulb)
+```neon
+extensions:
+	events: Contributte\EventDispatcher\DI\EventDispatcherExtension
+	events2security: Contributte\Events\Bridges\Security\DI\EventSecurityBridgeExtension
+```
 
-## Maintainers
+### Bridge :wrench:
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/f3l1x">
-            <img width="150" height="150" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=150">
-        </a>
-        </br>
-        <a href="https://github.com/f3l1x">Milan Felix Šulc</a>
-      </td>
-    </tr>
-  <tbody>
-</table>
+There are several Nette Security events on which you can listen to.
+
+```php
+use Contributte\Events\Bridges\Security\Event\LoggedInEvent;
+use Contributte\Events\Bridges\Security\Event\LoggedOutEvent;
+```
+
+- `LoggedInEvent::NAME` && `SecurityEvents::ON_LOGGED_IN`
+- `LoggedOutEvent::NAME` && `SecurityEvents::ON_LOGGED_OUT`
+
+### Subscriber :bulb:
+
+```php
+use Contributte\EventDispatcher\EventSubscriber;
+use Contributte\Events\Bridges\Security\Event\LoggedInEvent;
+use Contributte\Events\Bridges\Security\Event\SecurityEvents;
+
+final class LoggedInSubscriber implements EventSubscriber
+{
+
+	/**
+	 * @return array
+	 */
+	public static function getSubscribedEvents()
+	{
+		return [SecurityEvents::ON_LOGGED_IN => 'onLoggedIn'];
+	}
+
+	/**
+	 * @param LoggedInEvent $event
+	 * @return void
+	 */
+	public function onLoggedIn(LoggedInEvent $event)
+	{
+		// do magic
+	}
+
+}
+```
+
+## Development
+
+This package was maintain by these authors.
+
+<a href="https://github.com/f3l1x">
+  <img width="80" height="80" src="https://avatars2.githubusercontent.com/u/538058?v=3&s=80">
+</a>
 
 -----
 
-Thank you for testing, reporting and contributing.
+Consider to [support](https://contributte.org/partners.html) **contributte** development team.
+Also thank you for being used this package.
