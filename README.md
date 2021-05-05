@@ -18,7 +18,7 @@
 | Composer | [`contributte/event-security-bridge`](https://packagist.org/packages/contributte/event-security-bridge) |
 |---| --- |
 | Version | ![](https://badgen.net/packagist/v/contributte/event-security-bridge) |
-| PHP | ![](https://badgen.net/packagist/php/contributte/contributte/event-security-bridge) |
+| PHP | ![](https://badgen.net/packagist/php/contributte/event-security-bridge) |
 | License | ![](https://badgen.net/github/license/contributte/event-security-bridge) |
 
 ## Versions
